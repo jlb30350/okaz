@@ -115,7 +115,7 @@ form i {
 }
 
 .form-signin {
-  max-width: 430px;
+  max-width: 330px;
   padding: 1rem;
 }
 
@@ -126,5 +126,10 @@ form i {
 
 .form-signin {
     max-width: 330px;
+    padding: 1rem;
+}
+
+.form-listing {
+  max-width: 700px;
     padding: 1rem;
 }

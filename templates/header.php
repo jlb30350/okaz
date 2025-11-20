@@ -1,10 +1,3 @@
-<script>
-    setTimeout(() => {
-        window.location.reload(true);
-    }, 2000);
-</script>
-
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -21,7 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="./assets/css/override-bootstrap.css">
-    <title>Okazz  </title>
+    <title>Okazz </title>
 </head>
 
 
@@ -30,46 +23,17 @@
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
             <div class="col-md-3 mb-2 mb-md-0">
                 <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-                    <img width="150" src="./assets/images/logo-okaz.png" alt="Logo ok">
-
+                    <img width="120" src="./assets/images/logo-okaz.png" alt="Logo ok">
                 </a>
             </div>
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 link-secondary">
-                        <font dir="auto" style="vertical-align: inherit;">
-                            <font dir="auto" style="vertical-align: inherit;">Maison</font>
-                        </font>
-                    </a></li>
-                <li><a href="#" class="nav-link px-2">
-                        <font dir="auto" style="vertical-align: inherit;">
-                            <font dir="auto" style="vertical-align: inherit;">Caractéristiques</font>
-                        </font>
-                    </a></li>
-                <li><a href="#" class="nav-link px-2">
-                        <font dir="auto" style="vertical-align: inherit;">
-                            <font dir="auto" style="vertical-align: inherit;">Tarification</font>
-                        </font>
-                    </a></li>
-                <li><a href="#" class="nav-link px-2">
-                        <font dir="auto" style="vertical-align: inherit;">
-                            <font dir="auto" style="vertical-align: inherit;">FAQ</font>
-                        </font>
-                    </a></li>
-                <li><a href="#" class="nav-link px-2">
-                        <font dir="auto" style="vertical-align: inherit;">
-                            <font dir="auto" style="vertical-align: inherit;">À propos</font>
-                        </font>
-                    </a></li>
-            </ul>
-            <div class="col-md-3 text-end"> <button type="button" class="btn btn-outline-primary me-2">
-                    <font dir="auto" style="vertical-align: inherit;">
-                        <font dir="auto" style="vertical-align: inherit;">Se connecter</font>
-                    </font>
-                </button> <button type="button" class="btn btn-primary">
-                    <font dir="auto" style="vertical-align: inherit;">
-                        <font dir="auto" style="vertical-align: inherit;">S'inscrire</font>
-                    </font>
-                </button> </div>
-        </header>
 
-        <main>
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="index.php" class="nav-link px-2 link-secondary">Acceuil</a></li>
+                <li><a href="annonces.php" class="nav-link px-2 ">Annonces</a></li>
+            </ul>
+
+            <div class="col-md-3 text-end">
+                <a class="btn btn-outline-primary me-2" href="login.php">Connexion</a>
+                <a class="btn btn-primary"  href="inscription.php">Inscription</a>
+            </div>
+        </header>

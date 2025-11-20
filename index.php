@@ -6,8 +6,10 @@
 <?php
 require_once 'templates/header.php';
 require_once 'libs/listing.php';
+require_once 'libs/category.php';
 
 $listings = getListings();
+$categories = getCategories();
 
 $categories = [
     ["name" => "Jeux vidéos", "icon" => "controller"],

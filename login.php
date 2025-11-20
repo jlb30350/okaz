@@ -1,19 +1,27 @@
+<script>
+    setTimeout(() => {
+        window.location.reload(true);
+    }, 2000);
+</script>
+
+
 <?php
-require_once "templates/header.php";
+require_once 'templates/header.php';
 ?>
+
 <div class="form-signin w-100 m-auto">
-    <form action="" method="post">
+    <form action="login.php" method="post">
         <h1 class="h3 mb-3 fw-normal">Veuillez vous connecter</h1>
 
         <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="nom@exemple.com">
-            <label for="floatingInput">Adresse email</font>
+            <input name="email" type="email" class="form-control" id="floatingInput" placeholder="nom@exemple.com">
+            <label for="floatingInput">email</font>
             </label>
         </div>
 
 
         <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Mot de passe">
+            <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Mot de passe">
             <label for="floatingPassword">Mot de passe</label>
         </div>
 
