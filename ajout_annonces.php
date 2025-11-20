@@ -30,22 +30,23 @@ $categories = getCategories();
             <textarea class="form-control" name="description" id="description" cols="30" rows="3"></textarea>
         </div>
 
-         <div class="mb-3">
+        <div class="mb-3">
             <label class="form-label" for="category">Categorie</label>
-           <select name="category" id="category"  class="form-select">
-            <?php foreach ($categories as $key => $category) { ?>
-                <option value="<?= $key ?>"><?= $category["name"] ?></option>
-            <?php } ?>
-           </select>
+            <select name="category" id="category" class="form-select">
+                <?php foreach ($categories as $key => $category) { ?>
+                    <option value="<?= $key ?>"><?= $category["name"] ?></option>
+                <?php } ?>
+            </select>
 
 
-        <input class="btn btn-primary" type="submit" value="Enregistrer">
+            <div class="mt-3">
+                <input class="btn btn-primary" type="submit" value="Enregistrer">
+            </div>
 
     </form>
-
 </div>
 
 
 <?php
 require_once "templates/footer.php";
-?></form>
+?>
