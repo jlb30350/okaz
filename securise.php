@@ -1,5 +1,10 @@
 <?php
-$pdo = new PDO('mysql:dbname=studi_okaz;host=localhost;charset=utf8mb4', 'root', '');
+$pdo = new PDO(
+    'mysql:host=127.0.0.1;dbname=studi_okaz;charset=utf8mb4',
+    'root',
+    ''
+);
+
 
 $id = (int)$_GET['id'];
 $query = $pdo->prepare("SELECT * FROM user WHERE id = :id");

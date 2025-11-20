@@ -3,6 +3,7 @@
         window.location.reload(true);
     }, 2000);
 </script>
+
 <?php
 require_once 'templates/header.php';
 require_once 'libs/listing.php';
