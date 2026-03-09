@@ -5,6 +5,18 @@ require_once 'libs/pdo.php';
 require_once 'libs/listing.php';
 require_once 'templates/header.php';
 
+$search = isset($_GET['search']) ? trim($_GET['search']) : '';
+$minPrice = isset($_GET['min_price']) && $_GET['min_price'] !== '' ? (float) $_GET['min_price'] : null;
+$maxPrice = isset($_GET['max_price']) && $_GET['max_price'] !== '' ? (float) $_GET['max_price'] : null;
+
+$listings = getFilteredListings($pdo, $search, $minPrice, $maxPrice);
+
+if (empty($listings)) {
+    echo '<div class="container mt-5"><div class="alert alert-danger">Aucune annonce trouvee.</div></div>';
+    require_once 'templates/footer.php';
+    exit();
+}
+
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     echo '<div class="container mt-5"><div class="alert alert-danger">Annonce introuvable.</div></div>';
     require_once 'templates/footer.php';

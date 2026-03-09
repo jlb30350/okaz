@@ -4,7 +4,11 @@ require_once 'libs/pdo.php';
 require_once 'libs/listing.php';
 require_once 'libs/category.php';
 
-$listings = getListings($pdo);
+$search = isset($_GET['search']) ? trim($_GET['search']) : '';
+$minPrice = isset($_GET['min_price']) && $_GET['min_price'] !== '' ? (float) $_GET['min_price'] : null;
+$maxPrice = isset($_GET['max_price']) && $_GET['max_price'] !== '' ? (float) $_GET['max_price'] : null;
+
+$listings = getFilteredListings($pdo, $search, $minPrice, $maxPrice);
 
 require_once 'templates/header.php';
 ?>
@@ -15,22 +19,40 @@ require_once 'templates/header.php';
             <h2>Filtres</h2>
 
             <form action="" method="get">
-                <div class="mb-3">
-                    <input type="text" name="search" class="form-control" placeholder="Rechercher">
-                </div>
+    <div class="mb-3">
+        <input
+            type="text"
+            name="search"
+            class="form-control"
+            placeholder="Rechercher"
+            value="<?= htmlspecialchars($search) ?>"
+        >
+    </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Prix min</label>
-                    <input type="number" name="min_price" class="form-control">
-                </div>
+    <div class="mb-3">
+        <label class="form-label">Prix min</label>
+        <input
+            type="number"
+            step="0.01"
+            name="min_price"
+            class="form-control"
+            value="<?= htmlspecialchars((string) ($minPrice ?? '')) ?>"
+        >
+    </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Prix max</label>
-                    <input type="number" name="max_price" class="form-control">
-                </div>
+    <div class="mb-3">
+        <label class="form-label">Prix max</label>
+        <input
+            type="number"
+            step="0.01"
+            name="max_price"
+            class="form-control"
+            value="<?= htmlspecialchars((string) ($maxPrice ?? '')) ?>"
+        >
+    </div>
 
-                <button class="btn btn-primary w-100">Filtrer</button>
-            </form>
+    <button class="btn btn-primary w-100">Filtrer</button>
+</form>
         </div>
 
         <div class="col-md-9">
