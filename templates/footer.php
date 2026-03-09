@@ -29,7 +29,7 @@
     </ul>
     <p class="text-center text-body-secondary">
         <font dir="auto" style="vertical-align: inherit;">
-            <font dir="auto" style="vertical-align: inherit;">© 2025 Société, Inc.</font>
+            <font dir="auto" style="vertical-align: inherit;">© 2026 jeanlucbonneville</font>
         </font>
     </p>
 </footer>
