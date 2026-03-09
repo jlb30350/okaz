@@ -1,10 +1,22 @@
-<div class="col-md-4 my-2 d-flex">
-        <div class="card w-100">
-            <img src="/uploads/listing/<?=$listing["image"] ?>"class="card-img-top" alt="<?=$listing["title"]?>">
-            <div class="card-body">
-                <h5 class="card-title"><?=$listing["title"]?></h5>
-                <p class="card-text"><?=$listing["price"]?>€</p>
-                <a href="annonce.php?id=<?= $key ?> class="btn btn-primary stretched-link w-100">Voir l'annonce</a>
-            </div>
-        </div>
+<div class="card h-100 shadow-sm">
+    <img
+        src="uploads/listing/<?= htmlspecialchars($listing['image_']) ?>"
+        class="card-img-top"
+        alt="<?= htmlspecialchars($listing['titre']) ?>"
+        style="height: 220px; object-fit: cover;"
+    >
+
+    <div class="card-body d-flex flex-column">
+        <h5 class="card-title mb-2"><?= htmlspecialchars($listing['titre']) ?></h5>
+
+        <p class="card-text text-muted small mb-3">
+            <?= htmlspecialchars($listing['description']) ?>
+        </p>
+
+        <p class="fw-bold fs-5 mb-3"><?= htmlspecialchars($listing['prix']) ?> €</p>
+
+        <a href="annonce.php?id=<?= (int) $listing['Id_Annonce'] ?>" class="btn btn-outline-primary mt-auto">
+            Voir l'annonce
+        </a>
     </div>
+</div>

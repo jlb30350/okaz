@@ -1,15 +1,32 @@
 <?php
 
-function getListings(): array
+function addListing(PDO $pdo, string $title, string $description, float $price, int $category_id, string $image, int $user_id): bool
 {
-    return  [
-        ["title" => "Sniper Elite 5", "price" => 30, "image" => "jeux1.jpg","description" => "Test description1"],
-        ["title" => "Test2", "price" => 20, "image" => "jeux2.jpg", "description" => "Test description2"],
-        ["title" => "Test3", "price" => 10, "image" => "jeux3.jpg","description" => "Test description3"],
-    ];
+    $sql = "INSERT INTO Annonce (titre, description, prix, image_, Id_Categorie, Id_Utilisateur)
+            VALUES (:title, :description, :price, :image, :category_id, :user_id)";
+
+    $query = $pdo->prepare($sql);
+
+    return $query->execute([
+        ':title' => $title,
+        ':description' => $description,
+        ':price' => $price,
+        ':image' => $image,
+        ':category_id' => $category_id,
+        ':user_id' => $user_id
+    ]);
 }
-function getListingById(int $id): array 
+
+function getListings(PDO $pdo): array
 {
-    $listings = getListings();
-    return $listings[$id];
+    $query = $pdo->prepare("SELECT * FROM Annonce ORDER BY Id_Annonce DESC");
+    $query->execute();
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getListingById(PDO $pdo, int $id): array|false
+{
+    $query = $pdo->prepare("SELECT * FROM Annonce WHERE Id_Annonce = :id");
+    $query->execute([':id' => $id]);
+    return $query->fetch(PDO::FETCH_ASSOC);
 }

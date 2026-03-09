@@ -1,55 +1,54 @@
-
-<script>
-    setTimeout(() => {
-        window.location.reload(true);
-    }, 2000);
-</script>
-
 <?php
-require_once "templates/header.php";
-
+session_start();
+require_once 'libs/pdo.php';
 require_once 'libs/listing.php';
+require_once 'libs/category.php';
 
-$listings = getListings();
+$listings = getListings($pdo);
+
+require_once 'templates/header.php';
 ?>
 
-<div class="row">
-    <div class="col-md-3">
-        <form action="" method="get">
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3">
             <h2>Filtres</h2>
-            <div class="p-3 border-botton">
-                <input type="text" name="search" id="search" class="form-control" placeholder="Rechercher">
-            </div>
-            <div class="p-3 border-botton">
-                <label for="price">Prix</label>
-                <div class="input-group">
-                    <input type="number" name="min_price" id="min_price" class="form-control" placeholder="Prix minimum">
-                    <span class="input-group-text">€</span>
+
+            <form action="" method="get">
+                <div class="mb-3">
+                    <input type="text" name="search" class="form-control" placeholder="Rechercher">
                 </div>
 
-                 <div class="input-group">
-                    <input type="number" name="max_price" id="max_price" class="form-control" placeholder="Prix maximun">
-                    <span class="input-group-text">€</span>
+                <div class="mb-3">
+                    <label class="form-label">Prix min</label>
+                    <input type="number" name="min_price" class="form-control">
                 </div>
-            </div>
 
-        <div>
-            <button type="submit" class="btn btn-primary w-100" >Filtrer</button>
+                <div class="mb-3">
+                    <label class="form-label">Prix max</label>
+                    <input type="number" name="max_price" class="form-control">
+                </div>
+
+                <button class="btn btn-primary w-100">Filtrer</button>
+            </form>
         </div>
 
-        </form>
-    </div>
+        <div class="col-md-9">
+            <h2 class="mb-4">Les annonces</h2>
 
-    <div class=" col-md-9">
-        <div class="row">
-            <h1>Les annonces</h1>
-            <?php foreach ($listings as $key => $listing) {
-                require 'templates/listing_part.php';
-            } ?>
+            <?php if (empty($listings)) : ?>
+                <p>Aucune annonce pour le moment.</p>
+            <?php else : ?>
+                <div class="row g-4">
+                    <?php foreach ($listings as $listing): ?>
+                        <div class="col-md-6 col-lg-4">
+                            <?php require 'templates/listing_part.php'; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </div>
 
-<?php
-require_once "templates/footer.php";
-?>
+<?php require_once 'templates/footer.php'; ?>

@@ -1,35 +1,53 @@
-<script>
-    setTimeout(() => {
-        window.location.reload(true);
-    }, 2000);
-</script>
-
 <?php
-require_once "templates/header.php";
+session_start();
 
+require_once 'libs/pdo.php';
 require_once 'libs/listing.php';
+require_once 'templates/header.php';
 
-if (isset($_GET["id"])) {
-    $id = (int)$_GET["id"];
-    $listing = getListingById($id);
+if (!isset($_GET['id']) || empty($_GET['id'])) {
+    echo '<div class="container mt-5"><div class="alert alert-danger">Annonce introuvable.</div></div>';
+    require_once 'templates/footer.php';
+    exit();
 }
 
+$id = (int) $_GET['id'];
+$listing = getListingById($pdo, $id);
 
+if (!$listing) {
+    echo '<div class="container mt-5"><div class="alert alert-danger">Annonce non trouvée.</div></div>';
+    require_once 'templates/footer.php';
+    exit();
+}
 ?>
-<div class="container col-xxl-12 px-1 py-5">
-    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-        <div class="col-10 col-sm-8 col-lg-4">
-            <img src="uploads/listing/<?= $listing["image"] ?>" class="d-block mx-lg-auto img-fluid" alt="<?= $listing["title"] ?>">
+
+<div class="container py-5">
+    <div class="row g-5 align-items-start">
+        <div class="col-md-6">
+            <img
+                src="uploads/listing/<?= htmlspecialchars($listing['image_']) ?>"
+                alt="<?= htmlspecialchars($listing['titre']) ?>"
+                class="img-fluid rounded shadow-sm"
+                style="width: 100%; max-height: 500px; object-fit: cover;"
+            >
         </div>
-        <div class="col-lg-8">
-            <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3"><?= $listing["title"] ?></h1>
-            <h2><?= $listing["price"] ?>€</h2>
-            <p class="lead"><?= $listing["description"] ?></p>
 
+        <div class="col-md-6">
+            <h1 class="mb-3"><?= htmlspecialchars($listing['titre']) ?></h1>
 
+            <p class="fs-3 fw-bold text-primary mb-4">
+                <?= htmlspecialchars($listing['prix']) ?> €
+            </p>
+
+            <p class="text-muted mb-4">
+                <?= nl2br(htmlspecialchars($listing['description'])) ?>
+            </p>
+
+            <a href="annonces.php" class="btn btn-outline-secondary">
+                Retour aux annonces
+            </a>
         </div>
     </div>
 </div>
-<?php
-require_once "templates/footer.php";
-?>
+
+<?php require_once 'templates/footer.php'; ?>
